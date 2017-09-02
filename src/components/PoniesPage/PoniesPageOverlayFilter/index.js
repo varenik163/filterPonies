@@ -1,7 +1,7 @@
 import React, {Component} from 'react'
 import {connect} from 'react-redux'
 import {loadProductsColors, loadProductsTypes, applyPoniesPageFilter} from "../../../AC/index"
-import OverlayFilter from '../../OverlayFilter/index'
+import PoniesFilter from '../../PoniesFilter/index'
 
 class PoniesPageOverlayFilter extends Component{
 
@@ -11,13 +11,18 @@ class PoniesPageOverlayFilter extends Component{
     }
 
     render() {
-        const {colors, types, show} = this.props
+        const {colors, types, show, poniesFilter} = this.props
         const body = show ? <div className="ponies_page ponies_page-overlay-filter">
             <div className="ponies_page ponies_page-overlay-filter-body">
                 <div className="ponies_page ponies_page-overlay-filter-close">
                     <a onClick={this.props.catchClose}>Закрыть</a>
                 </div>
-                {colors && types ? <OverlayFilter colors={colors} types={types} submitCallback={this.applyFilter}/> : ''}
+                {colors && types ? <PoniesFilter
+                    colors={colors}
+                    types={types}
+                    submitCallback={this.applyFilter}
+                    defaultState={poniesFilter}
+                /> : ''}
             </div>
         </div> : ''
 
@@ -36,6 +41,7 @@ const mapStateToProps = state => {
     return {
         colors: state.productsColors,
         types: state. productsTypes,
+        poniesFilter: state.poniesFilter
     }
 }
 

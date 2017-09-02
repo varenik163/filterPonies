@@ -18,9 +18,9 @@ export function loadProductsTypes() {
     }
 }
 
-export function applyPoniesPageFilter(type, color, is_new) {
+export function applyPoniesPageFilter(type, color, is_new, priceFrom, priceTo) {
     return {
         type: FILTER_PONIES,
-        payload:{kind: type, color, is_new}
+        payload:{kind: type, color, is_new, priceFrom, priceTo}
     }
 }

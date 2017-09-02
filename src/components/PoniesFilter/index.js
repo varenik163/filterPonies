@@ -2,22 +2,26 @@ import React, {Component} from 'react'
 import {connect} from 'react-redux'
 import {generateRandomKey} from "../../helpers";
 
-class OverlayFilter extends Component {
+class PoniesFilter extends Component {
 
     constructor(props) {
         super(props)
 
+        const {defaultState} = props
+        const {color, kind, is_new, priceFrom, priceTo} = defaultState
+
         this.state = {
-            selectedColor:  '',
-            selectedType: '',
-            is_new: false,
-            price: ''
+            selectedColor: color ? color : ''  ,
+            selectedType: kind ? kind : '',
+            is_new: is_new ? is_new : false,
+            priceFrom: priceFrom ? priceFrom : '',
+            priceTo: priceTo ? priceTo : ''
         }
     }
 
     render() {
         const {colors, types} = this.props
-        const {selectedType, selectedColor, is_new} = this.state
+        const {selectedType, selectedColor, is_new, priceFrom, priceTo} = this.state
         console.log(this.state)
         const colorsTemplate = colors ? colors.map(elem => <option value={elem} key={generateRandomKey()}>
             {elem}
@@ -39,10 +43,28 @@ class OverlayFilter extends Component {
                 {typesTemplate}
             </select>
             <br/>
+            <label>Цена от</label>
+            <input type="text" onChange={this.handlePriceFrom} value={priceFrom} />
+            <br/>
+            <label>Цена до</label>
+            <input type="text" onChange={this.handlePriceTo} value={priceTo} />
+            <br/>
             <label>Новые</label>
-            <input type="checkbox" checked={is_new} onClick={this.handleCheckBox} />
+            <input type="checkbox" checked={is_new} onChange={this.handleCheckBox} />
             <button>Найти</button>
         </form>
+    }
+
+    handlePriceFrom = ev => {
+        const value = ev.target.value
+
+        this.setState({priceFrom: parseFloat(value)})
+    }
+
+    handlePriceTo = ev => {
+        const value = ev.target.value
+
+        this.setState({priceTo: parseFloat(value)})
     }
 
     handleColor = ev => {
@@ -55,9 +77,9 @@ class OverlayFilter extends Component {
 
     handleSubmit = ev => {
         ev.preventDefault()
-        const {selectedType, selectedColor, is_new} = this.state
+        const {selectedType, selectedColor, is_new, priceFrom, priceTo} = this.state
 
-        this.props.submitCallback([selectedType, selectedColor,is_new])
+        this.props.submitCallback([selectedType, selectedColor, is_new, priceFrom, priceTo])
     }
 
     handleCheckBox = ev => {
@@ -65,4 +87,4 @@ class OverlayFilter extends Component {
     }
 }
 
-export default OverlayFilter
+export default PoniesFilter
