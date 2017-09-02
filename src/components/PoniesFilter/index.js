@@ -58,13 +58,13 @@ class PoniesFilter extends Component {
     handlePriceFrom = ev => {
         const value = ev.target.value
 
-        this.setState({priceFrom: parseFloat(value)})
+        this.setState({priceFrom: value && !isNaN(value) ? parseFloat(value) : ''})
     }
 
     handlePriceTo = ev => {
         const value = ev.target.value
 
-        this.setState({priceTo: parseFloat(value)})
+        this.setState({priceTo: value && !isNaN(value) ? parseFloat(value) : ''})
     }
 
     handleColor = ev => {
