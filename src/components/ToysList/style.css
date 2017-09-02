@@ -1,0 +1,7 @@
+.toys-list-item small{
+    display: inline-block;
+    margin-right: 5px;
+}
+.toys-list-item-desc:last-child{
+    margin-right: 0;
+}

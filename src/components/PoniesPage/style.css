@@ -1,0 +1,42 @@
+a{
+    color: blue;
+    text-decoration: underline;
+    cursor: pointer;
+}
+
+.ponies_page-overlay-filter{
+    position: fixed;
+    left: 0;
+    top:0;
+    width: 100%;
+    height: 100%;
+    background: rgba(255, 255, 255, 0.49);
+}
+
+.ponies_page-overlay-filter  .ponies_page-overlay-filter-body{
+    margin: 100px auto;
+    background: #fff;
+    border: 2px solid #ccc;
+    display: block;
+    width: 300px;
+    padding: 20px;
+}
+
+.ponies_page-overlay-filter form label, .ponies_page-overlay-filter form select,
+.ponies_page-overlay-filter form input{
+    margin-bottom: 10px;
+}
+.ponies_page-overlay-filter form label{
+    margin-right: 5px;
+}
+
+.ponies_page.ponies_page-overlay-filter-close{
+    box-sizing: border-box;
+    overflow: hidden;
+    display: block;
+    margin-bottom: 10px;
+}
+
+.ponies_page.ponies_page-overlay-filter-close a{
+    float: right;
+}
